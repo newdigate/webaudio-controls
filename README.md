@@ -1,5 +1,7 @@
 # webaudio-controls
 
+* this fork of ```webaudio-controls``` allows me to use webaudio controls inside [electron](https://www.electronjs.org/). Electron seems to hide the 'value' property on the webaudio controls, so I have made 'value' available by using a javascript CustomEvent, instead of the regular Event; 
+
 **webaudio-controls** is a Javascript library for displaying the GUI parts required to Web Music applications.  webaudio-controls consists of knobs, sliders, switches, parameter displays and keyboards. By loading `webaudio-controls.js` to your page, custom tags for component display will be added using WebComponents.  You can configure the GUI screen just by writing custom tags in HTML.  
 
 Chrome / Firefox / Edge compatible  

@@ -1,5 +1,5 @@
 {
-  "name": "@g200kg/webaudio-controls",
+  "name": "@newdigate/webaudio-controls",
   "version": "2.1.2",
   "description": "GUI parts library for Web Audio applications",
   "main": "webaudio-controls.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/g200kg/webaudio-controls.git"
+    "url": "git+https://github.com/newdigate/webaudio-controls.git"
   },
   "keywords": [
     "gui",

@@ -172,9 +172,7 @@ if(window.customElements){
       }
     }
     sendEvent(ev){
-      let event;
-      event=document.createEvent("HTMLEvents");
-      event.initEvent(ev,false,true);
+      var event = new CustomEvent(ev, {'value': this._value});
       this.dispatchEvent(event);
     }
     getAttr(n,def){

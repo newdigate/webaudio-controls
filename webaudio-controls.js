@@ -172,7 +172,7 @@ if(window.customElements){
       }
     }
     sendEvent(ev){
-      var event = new CustomEvent(ev, {'value': this._value});
+      var event = new CustomEvent(ev, {'detail':{'value': this._value}});
       this.dispatchEvent(event);
     }
     getAttr(n,def){

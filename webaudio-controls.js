@@ -172,7 +172,12 @@ if(window.customElements){
       }
     }
     sendEvent(ev){
-      var event = new CustomEvent(ev, {'detail':{'value': this._value}});
+      let event 
+      if (typeof window.CustomEvent === 'function') {
+        event = new CustomEvent(ev, {'detail':{'value': this._value}});
+      } else {
+        event = new Event(ev, {"bubbles":false, "cancelable":true});
+      } 
       this.dispatchEvent(event);
     }
     getAttr(n,def){
@@ -1533,8 +1538,12 @@ ${this.basestyle}
         this.redraw();
         this.showtip(0);
         if(f){
-          let event=document.createEvent("HTMLEvents");
-          event.initEvent("change",false,true);
+          let event
+          if (typeof window.CustomEvent === 'function') {
+            event = new CustomEvent('change', {'detail':{'value': this.value}});
+          } else {
+            event = new Event('change', {"bubbles":false, "cancelable":true});
+          } 
           this.dispatchEvent(event);
         }
         this.oldvalue=this.value;
@@ -1824,9 +1833,13 @@ ${this.basestyle}
       ev.stopPropagation();
     }
     sendEventFromKey(s,k){
-      let ev=document.createEvent('HTMLEvents');
-      ev.initEvent('change',true,true);
-      ev.note=[s,k];
+      let event
+      if (typeof window.CustomEvent === 'function') {
+        event = new CustomEvent('change', {'detail':{'note': [s,k]}});
+      } else {
+        event = new Event('change', {"bubbles":true, "cancelable":true});
+      } 
+      event.note=[s,k];
       this.dispatchEvent(ev);
     }
     sendevent(){
@@ -1843,8 +1856,12 @@ ${this.basestyle}
         this.valuesold=this.values;
         for(let i=0;i<notes.length;++i) {
           this.setdispvalues(notes[i][0],notes[i][1]);
-          let ev=document.createEvent('HTMLEvents');
-          ev.initEvent('change',true,true);
+          let ev
+          if (typeof window.CustomEvent === 'function') {
+            ev = new CustomEvent('change', {'detail':{'note': notes[i]}});
+          } else {
+            ev = new Event('change', {'bubbles':true, 'cancelable':true});
+          } 
           ev.note=notes[i];
           this.dispatchEvent(ev);
         }
